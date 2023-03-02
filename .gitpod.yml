@@ -1,7 +1,6 @@
 tasks:
   - name: install aws cli
-    # change working directory as per configured in `checkoutLocation`
-    # which is configured above as `/workspaces/backend`
+    # change working directory 
     before: |
       cd /workspace
     init: |
@@ -13,3 +12,8 @@ tasks:
       sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
       rm -rf aws awscliv2.zip
       complete -C '/usr/local/bin/aws_completer' aws
+
+tasks:
+  - name: install python libraries
+    init: pip3 install -r requirements.txt
+    command: python3 main.py
